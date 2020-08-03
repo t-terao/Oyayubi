@@ -37,12 +37,12 @@ void loop() {
   Serial.print("Z:");
   Serial.print(z);
   Serial.println("");
-  Serial.print("x:");
-  Serial.print(getrotateX());
-  Serial.print("° ");
-  Serial.print("y:");
-  Serial.print(getrotateY());
-  Serial.print("° ");
-  Serial.println("");
+//  Serial.print("x:");
+ // Serial.print(getrotateX());
+//  Serial.print("° ");
+ // Serial.print("y:");
+ // Serial.print(getrotateY());
+ // Serial.print("° ");
+ // Serial.println("");
   delay(500);
 }
