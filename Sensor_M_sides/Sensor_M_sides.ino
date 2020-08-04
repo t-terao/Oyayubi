@@ -52,20 +52,34 @@ void loop() {
   float gyro_z = gzRaw / 131.0;
   if(gyro_y>5 || gyro_y<-5){
     int i = (int)gyro_y;
-    String c = String(i);
+    char d;
+    if(i<0){
+      char d = '0';
+      int i = -i;
+    }
+    else char d = '1';
+    char c = (char)i;
     Serial.print(i);Serial.print(c);
     Wire.beginTransmission(Arduino);
     Wire.write("y");
     Wire.write(c);
+    Wire.write(d);
     Wire.endTransmission();
   }
   if(gyro_z>5 || gyro_z<-5){
     int i = (int)gyro_z;
-    Strint c = String(i);
+    char d;
+    if(i<0){
+      char d = '0';
+      int i = -i;
+    }
+    else char d = '1';
+    char c = (char)i;
     Serial.print(i);Serial.print(c);
     Wire.beginTransmission(Arduino);
     Wire.write("z");
     Wire.write(c);
+    Wire.write(d);
     Wire.endTransmission();
   } 
   //Serial.print(acc_x);  Serial.print(",");
@@ -74,5 +88,5 @@ void loop() {
   //Serial.print(gyro_x); Serial.print(",");Serial.println(rotate);
   Serial.print("y:");Serial.print(gyro_y); Serial.print(",");Serial.println(rotatey);
   Serial.print("z:");Serial.print(gyro_z); Serial.println(rotatez);
-  delay(100);
+  delay(500);
 }
