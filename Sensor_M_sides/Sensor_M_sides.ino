@@ -7,6 +7,13 @@
 #define Arduino 8 //Slave ID
 int rotatey=90;
 int rotatez=90;
+char c;
+byte by = 0;
+byte ay = 0;
+byte bz = 0;
+byte az = 0;
+int iy = 0;
+int iz = 0;
 void setup() {
   Serial.begin(9600);
   //I2Cスタート
@@ -48,45 +55,50 @@ void loop() {
 
   // 角速度値を分解能で割って角速度(degrees per sec)に変換する
   float gyro_x = gxRaw / 131.0;//FS_SEL_0 131 LSB / (°/s)
-  float gyro_y = gyRaw / 131.0;
+  float gyro_y = gyRaw / 131.0+3.5;
   float gyro_z = gzRaw / 131.0;
-  if(gyro_y>5 || gyro_y<-5){
-    int i = (int)gyro_y;
-    char d;
-    if(i<0){
-      char d = '0';
-      int i = -i;
-    }
-    else char d = '1';
-    char c = (char)i;
-    Serial.print(i);Serial.print(c);
+  if(gyro_y>5 || gyro_y<-5||gyro_z>5||gyro_z<-5){
+    iy = (int)gyro_y;
+    iz = (int)gyro_z;
     Wire.beginTransmission(Arduino);
-    Wire.write("y");
-    Wire.write(c);
-    Wire.write(d);
+    if(iy<0){
+      ay = 0;
+      iy=-iy;
+      by = byte(iy);
+      Wire.write(by);
+      Wire.write(ay);
+    }else if(iy>0){
+      ay = 1;
+      by = byte(iy);
+      Wire.write(by);
+      Wire.write(ay);
+    }
+    if(iz<0){
+      iz=-iz;
+      az=0;
+      bz = byte(iz);
+      Wire.write(bz);
+      Wire.write(az);
+    }else if(iz>0){
+      az = 1;
+      bz = byte(iz);
+      Wire.write(bz);
+      Wire.write(az);
+    }
     Wire.endTransmission();
   }
   if(gyro_z>5 || gyro_z<-5){
-    int i = (int)gyro_z;
-    char d;
-    if(i<0){
-      char d = '0';
-      int i = -i;
-    }
-    else char d = '1';
-    char c = (char)i;
-    Serial.print(i);Serial.print(c);
+
     Wire.beginTransmission(Arduino);
     Wire.write("z");
-    Wire.write(c);
-    Wire.write(d);
+
     Wire.endTransmission();
   } 
   //Serial.print(acc_x);  Serial.print(",");
  // Serial.print(acc_y);  Serial.print(",");
   //Serial.print(acc_z);  Serial.print(",");
   //Serial.print(gyro_x); Serial.print(",");Serial.println(rotate);
-  Serial.print("y:");Serial.print(gyro_y); Serial.print(",");Serial.println(rotatey);
-  Serial.print("z:");Serial.print(gyro_z); Serial.println(rotatez);
-  delay(500);
+  Serial.print("y:");Serial.print(gyro_y); 
+  Serial.print("z:");Serial.println(gyro_z);
+  delay(200);
 }
