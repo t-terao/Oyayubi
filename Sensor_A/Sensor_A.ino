@@ -10,7 +10,7 @@ void getXYZ(){
   x=y=z=0;
   for(int i=0;i<50;i++){
     x+=analogRead(15);
-    y+=analogRead(2);
+    y+=analogRead(34);
     z+=analogRead(0);
   }
   x=x/500;
@@ -25,7 +25,7 @@ double getrotateX(){
 }
 double getrotateY(){
   double rotate;
-  rotate = (y-111)/0.916 -90;
+  rotate = (y-105)/0.9 -90;
   return rotate;
 }
 void loop() {
@@ -40,8 +40,8 @@ void loop() {
 //  Serial.print("x:");
  // Serial.print(getrotateX());
 //  Serial.print("° ");
- // Serial.print("y:");
- // Serial.print(getrotateY());
+  Serial.print("y:");
+  Serial.print(getrotateY());
  // Serial.print("° ");
  // Serial.println("");
   delay(500);
