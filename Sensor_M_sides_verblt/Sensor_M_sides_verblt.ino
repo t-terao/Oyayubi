@@ -10,8 +10,8 @@ BluetoothSerial SerialBT;
 #define ysensor 34
 #define y_min 105
 #define y_range 0.9
-String MACadd = "24:6F:28:79:CF:FA";
-uint8_t address[6]  = {0x24, 0x6F, 0x28, 0x79, 0xCF, 0xFA};
+String MACadd = "FC:F5:C4:1A:56:CA";
+uint8_t address[6]  = {0xFC, 0xF5, 0xC4, 0x1A, 0x56, 0xCA};
 //uint8_t address[6]  = {0x00, 0x1D, 0xA5, 0x02, 0xC3, 0x22};
 String name = "OBDII";
 char *pin = "1234"; //<- standard pin would be provided by default
@@ -83,34 +83,34 @@ void loop() {
   //FS_SEL_0 131 LSB / (°/s)
   float gyro_y = gyRaw / 131.0+3.5;
   float gyro_z = gzRaw / 131.0;
-  if((gyro_y > 40 || gyro_y<-40)&&(gyro_z>40||gyro_z<-40)){
+  if((150>gyro_y > 10 || -150<gyro_y<-10)&&(gyro_z>40||gyro_z<-40)){
     iy = (int)gyro_y;
     iz = (int)gyro_z;
-    rotatey = rotatey + iy*0.2;
-    rotatez = rotatez + iz*0.2;
-    if(rotatey<20)rotatey=20;
-    if(rotatey>160)rotatey=160;
-    if(rotatez<20)rotatez=20;
-    if(rotatez>160)rotatez=160;
+    rotatey = rotatey + iy*0.18;
+    rotatez = rotatez + iz*0.18;
+    if(rotatey<30)rotatey=30;
+    if(rotatey>150)rotatey=150;
+    if(rotatez<30)rotatez=30;
+    if(rotatez>150)rotatez=150;
     SerialBT.write(rotatey);
     SerialBT.write(rotatez);
     Serial.print("rotatey:");Serial.println(rotatey);
     Serial.print("rotatez:");Serial.println(rotatez);
   }
-  else if (gyro_y > 40 || gyro_y<-40) {
+  else if ((150 > gyro_y > 10 ||-150 < gyro_y<-10)) {
     iy = (int)gyro_y;
-    rotatey = rotatey + iy*0.2;
-    if(rotatey<20)rotatey=20;
-    if(rotatey>160)rotatey=160;
+    rotatey = rotatey + iy*0.18;
+    if(rotatey<30)rotatey=30;
+    if(rotatey>150)rotatey=150;
     SerialBT.write(rotatey);
     SerialBT.write(rotatez);
     Serial.print("rotatey:");Serial.println(rotatey);
   }
-  else if(gyro_z >40||gyro_z<-40){
+  else if((150>gyro_z >40||-150<gyro_z<-40)){
     iz=(int)gyro_z;
-    rotatez = rotatez + iz*0.2;
-    if(rotatez<20)rotatez=20;
-    if(rotatez>160)rotatez=160;
+    rotatez = rotatez + iz*0.18;
+    if(rotatez<30)rotatez=30;
+    if(rotatez>150)rotatez=150;
     SerialBT.write(rotatey);
     SerialBT.write(rotatez);
     Serial.print("rotatez:");Serial.println(rotatez);
@@ -122,5 +122,5 @@ void loop() {
   //Serial.print(gyro_x); Serial.print(",");Serial.println(rotate);
   Serial.print("y:");Serial.print(gyro_y);
   Serial.print("z:"); Serial.println(gyro_z);
-  delay(300);
+  delay(500);
 }
