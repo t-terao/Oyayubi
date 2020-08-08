@@ -11,7 +11,7 @@
 BluetoothSerial SerialBT;
 
 String MACadd = "24:6F:28:79:CF:FA";
-uint8_t address[6]  = {0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F};
+uint8_t address[6]  = {0x24, 0x6F, 0x28, 0x79, 0xCF, 0xFA};
 //uint8_t address[6]  = {0x00, 0x1D, 0xA5, 0x02, 0xC3, 0x22};
 String name = "OBDII";
 char *pin = "1234"; //<- standard pin would be provided by default
