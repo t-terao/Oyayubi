@@ -83,8 +83,8 @@ void loop() {
   //FS_SEL_0 131 LSB / (°/s)
   float gyro_y = gyRaw / 131.0+3.5;
   float gyro_z = gzRaw / 131.0;
-  float gyro_x = gxRaw;
-  if((150>gyro_x > 10 || -150<gyro_x<-10)||(150>gyro_z>40||-150<gyro_z<-40)){
+  float gyro_x = gxRaw / 131.0;
+  if((200>gyro_x > 40 || -200<gyro_x<-40)||(150>gyro_z>40||-150<gyro_z<-40)){
     ix = (int)gyro_x;
     iz = (int)gyro_z;
     rotatex = rotatex + ix*0.18;
@@ -98,14 +98,14 @@ void loop() {
     Serial.print("rotatex:");Serial.println(rotatex);
     Serial.print("rotatez:");Serial.println(rotatez);
   }
-/*  else if ((150 > gyro_y > 10 ||-150 < gyro_y<-10)) {
-    iy = (int)gyro_y;
-    rotatey = rotatey + iy*0.18;
-    if(rotatey<30)rotatey=30;
-    if(rotatey>150)rotatey=150;
-    SerialBT.write(rotatey);
+  else if ((200 > gyro_x > 40 ||-200 < gyro_x< -40)) {
+    iy = (int)gyro_x;
+    rotatex = rotatex + ix*0.18;
+    if(rotatex<30)rotatex=30;
+    if(rotatex>150)rotatex=150;
+    SerialBT.write(rotatex);
     SerialBT.write(rotatez);
-    Serial.print("rotatey:");Serial.println(rotatey);
+    Serial.print("rotatex:");Serial.println(rotatex);
   }
   else if((150>gyro_z >40||-150<gyro_z<-40)){
     iz=(int)gyro_z;
@@ -116,7 +116,6 @@ void loop() {
     SerialBT.write(rotatez);
     Serial.print("rotatez:");Serial.println(rotatez);
   }
-*/
   //Serial.print(acc_x);  Serial.print(",");
   // Serial.print(acc_y);  Serial.print(",");
   //Serial.print(acc_z);  Serial.print(",");
