@@ -1,0 +1,11 @@
+使用機材一覧
+Arduino Uno  (https://www.switch-science.com/catalog/789/?gclid=Cj0KCQjw-af6BRC5ARIsAALPIlVlAOcAuIRGztIKlG4bwwBh0DqjMu7eYvuqpQsTHl0rEkJ6wQUXrs8aAi3yEALw_wcB)
+
+ESP32  (https://www.amazon.co.jp/gp/product/B086WWNP9Y/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1)
+
+
+MPU-6050 使用 ３軸ジャイロスコープ・３軸加速度センサー モジュール(https://www.amazon.co.jp/gp/product/B008BOPN40/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
+
+Arducam miniモジュール  (https://www.switch-science.com/catalog/3780/)
+
+サーボモーター  (http://akizukidenshi.com/catalog/g/gM-08761/)
